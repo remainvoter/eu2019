@@ -31,7 +31,7 @@
                 .container {
                     display: flex;
                 }
-                .postcode-form {
+                .forms {
                     flex: 1 0 0;
                 }
                 .map-svg {
@@ -43,58 +43,61 @@
             </style>
             <h2>Enter your postcode or click your region on the map</h2>
             <div class="container">
-                <form method="post" action="https://arcane-dawn-46472.herokuapp.com/api/eu_region_by_pc/" class="postcode-form" id="postcode-form">
-                    <label for="postcode">Your postcode</label>
-                    <input type="text" id="postcode" class="input-single" />
-                    <button type="submit" class="btn-primary">Submit</button>
-                    <p id="region-result" aria-live="polite"></p>
-                </form>
-                <!-- put this here because the svg might take a while to parse -->
-                <script>
-                    var postcodeForm = document.getElementById('postcode-form');
-                    var resultEl = document.getElementById('region-result');
-                    var postcodeEl = document.getElementById('postcode');
-                    var url = postcodeForm.getAttribute('action');
-                    var method = postcodeForm.getAttribute('method');
-                    function ajaxError() {
-                        resultEl.innerText = 'Sorry, there was an error. Please try again.';
-                    }
-                    // no babel or build tools for libraries, so ajax like its 2005
-                    postcodeForm.addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        var postcodeVal = postcodeEl.value;
-                        var request = new XMLHttpRequest();
-                        request.open(method, url);
-                        postcodeForm.setAttribute('aria-busy', true);
-                        resultEl.innerText = 'Looking up your European voting region';
-                        request.onreadystatechange = function() {
-                            if (this.readyState === XMLHttpRequest.DONE) {
-                                postcodeForm.setAttribute('aria-busy', false);
-                                if (this.status === 200) {
-                                    var result = request.responseText;
-                                    var resultJson;
-                                    try {
-                                        resultJson = JSON.parse(result);
-                                    } catch (err) {
+                <div class="forms">
+                    <form method="post" action="https://arcane-dawn-46472.herokuapp.com/api/eu_region_by_pc" class="postcode-form" id="postcode-form">
+                        <label for="postcode">Your postcode</label>
+                        <input type="text" id="postcode" class="input-single" />
+                        <button type="submit" class="btn-primary">Submit</button>
+                        <p id="region-result" aria-live="polite"></p>
+                    </form>
+                    <!-- put this here because the svg might take a while to parse -->
+                    <script>
+                        var postcodeForm = document.getElementById('postcode-form');
+                        var resultEl = document.getElementById('region-result');
+                        var postcodeEl = document.getElementById('postcode');
+                        var url = postcodeForm.getAttribute('action');
+                        var method = postcodeForm.getAttribute('method');
+                        function ajaxError() {
+                            resultEl.innerText = 'Sorry, there was an error. Please try again.';
+                        }
+                        // no babel or build tools for libraries, so ajax like its 2005
+                        postcodeForm.addEventListener('submit', function (e) {
+                            e.preventDefault();
+                            var postcodeVal = postcodeEl.value;
+                            var request = new XMLHttpRequest();
+                            request.open(method, url);
+                            postcodeForm.setAttribute('aria-busy', true);
+                            resultEl.innerText = 'Looking up your European voting region';
+                            request.onreadystatechange = function() {
+                                if (this.readyState === XMLHttpRequest.DONE) {
+                                    postcodeForm.setAttribute('aria-busy', false);
+                                    if (this.status === 200) {
+                                        var result = request.responseText;
+                                        var resultJson;
+                                        try {
+                                            resultJson = JSON.parse(result);
+                                        } catch (err) {
+                                            ajaxError();
+                                        }
+                                        var docFrag = document.createDocumentFragment();
+                                        var resultText = document.createTextNode('Your voting region is ');
+                                        var resultLink = document.createElement('a');
+                                        resultLink.href = 'https://remainvoter.com/' + resultJson.slug;
+                                        resultLink.appendChild(document.createTextNode(resultJson.name));
+                                        docFrag.appendChild(resultText);
+                                        docFrag.appendChild(resultLink);
+                                        resultEl.innerHTML = '';
+                                        resultEl.appendChild(docFrag);
+                                    } else {
                                         ajaxError();
                                     }
-                                    var docFrag = document.createDocumentFragment();
-                                    var resultText = document.createTextNode('Your voting region is ');
-                                    var resultLink = document.createElement('a');
-                                    resultLink.href = 'https://remainvoter.com/' + resultJson.slug;
-                                    resultLink.appendChild(document.createTextNode(resultJson.name));
-                                    docFrag.appendChild(resultText);
-                                    docFrag.appendChild(resultLink);
-                                    resultEl.innerHTML = '';
-                                    resultEl.appendChild(docFrag);
-                                } else {
-                                    ajaxError();
                                 }
                             }
-                        }
-                        request.send('postcode=' + postcodeVal);
-                    });
-                </script>
+                            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            request.send('postcode=' + postcodeVal);
+                        });
+                    </script>
+                </div>
 <svg class="map-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640" height="686" viewbox="0 0 640 686" preserveAspectRatio="xMinYMin meet">
     
     <style>
