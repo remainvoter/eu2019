@@ -81,12 +81,12 @@
                                         var docFrag = document.createDocumentFragment();
                                         
                                         if (resultJson && resultJson.name) {
-                                            var resultText = document.createTextNode('Your voting region is ' + resultJson.name);
-                                            //var resultLink = document.createElement('a');
-                                            //resultLink.href = 'https://remainvoter.com/remain-tactical-voting-recommendation/' + resultJson.slug;
-                                            //resultLink.appendChild(document.createTextNode(resultJson.name));
+                                            var resultText = document.createTextNode('Your voting region is ');
+                                            var resultLink = document.createElement('a');
+                                            resultLink.href = 'https://remainvoter.com/remain-tactical-voting-recommendation/' + resultJson.slug;
+                                            resultLink.appendChild(document.createTextNode(resultJson.name));
                                             docFrag.appendChild(resultText);
-                                            //docFrag.appendChild(resultLink);
+                                            docFrag.appendChild(resultLink);
                                         } else if (resultJson && resultJson.message) {
                                             docFrag.appendChild(document.createTextNode(resultJson.message))
                                         }
