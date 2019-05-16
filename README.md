@@ -2,5 +2,5 @@
 
 See RemainVoter.com for details.
 
-Wix: https://remainvoter.christianoliff.com/who-should-i-vote-for/
-Jekyll: https://remainvoter.christianoliff.com/who-should-i-vote-for/
+- Wix: https://remainvoter.christianoliff.com/who-should-i-vote-for/
+- Jekyll: https://remainvoter.christianoliff.com/who-should-i-vote-for/
