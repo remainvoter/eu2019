@@ -45,7 +45,7 @@
                 <div class="forms">
                     <form method="post" action="https://arcane-dawn-46472.herokuapp.com/api/eu_region_by_pc" class="postcode-form" id="postcode-form">
                         <label for="postcode">Your postcode</label>
-                        <input type="text" id="postcode" class="input-single" />
+                        <input type="text" id="postcode" autocomplete="post-code" spellcheck="false" autocorrect="off" maxlength="9" class="input-single" />
                         <button type="submit" class="btn-primary">Submit</button>
                         <p id="region-result" aria-live="polite"></p>
                     </form>
