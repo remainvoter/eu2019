@@ -8,6 +8,8 @@ B. EU 2019 polls - how likely voters are to vote for parties.
 
 C. Regional voting intention - how likely voters are to switch between parties, by region.
 
+D. Increased turnout percentage - the expected increase from 2014 European Elections.
+
 
 ## Sources
 
