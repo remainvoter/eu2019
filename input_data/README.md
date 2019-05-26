@@ -15,6 +15,6 @@ D. Increased turnout percentage - the expected increase from 2014 European Elect
 
 A_expected_total_voters.csv - http://www.europarl.europa.eu/unitedkingdom/en/european-elections/european_elections/results.html
 
-B_EU_2019_intentions.csv - 2019-05-18
+B_EU_2019_intentions.csv - https://www.remainvoter.com/data-sources
 
-C_voter_swings.csv - Table 56, https://www.comresglobal.com/wp-content/uploads/2019/05/Brexit-Express-Tables-120519.pdf
+C_voter_swings.csv - https://www.smartsurvey.co.uk/s/EU_voter_intention_survey/
